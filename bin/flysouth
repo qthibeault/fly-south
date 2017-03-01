@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const program = require('commander');
+const app = require('..');
+const figlet = require('figlet');
+
+(function main () {
+
+    figlet('Fly-South', function(err, data) {
+        if(err)
+            throw err;
+
+        console.log(data);
+
+        program
+            .parse(process.argv);
+    });
+
+})();
