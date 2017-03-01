@@ -1,8 +1,9 @@
 'use strict';
 
-const figlet = require('figlet');
 const program = require('commander');
-const create = require('./lib/create')
+
+const create = require('./lib/create');
+const migrate = require('./lib/migrate');
 
 const app = program
     .version('0.0.1')
@@ -19,6 +20,11 @@ const app = program
                 console.error(err);
                 process.exit(-1);
             });
+    })
+    .command('migrate <name>')
+    .action(function (name) {
+        console.log(`Running migration [${name}]`);
+        // TODO
     });
 
 module.exports = app;
