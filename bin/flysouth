@@ -8,7 +8,7 @@ const figlet = require('figlet');
 
 (function main () {
 
-    figlet('Fly-South', function(err, data) {
+    figlet('Fly - South', function(err, data) {
         if(err)
             throw err;
 
