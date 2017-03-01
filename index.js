@@ -7,7 +7,7 @@ const migrate = require('./lib/migrate');
 
 const app = program
     .version('0.0.1')
-    .command('create <name>', { default: true });
+    .command('create <name>', { default: true })
     .action(function (name) {
         console.log('Creating a new migration configuration');
         create(name)
