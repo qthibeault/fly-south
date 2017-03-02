@@ -6,11 +6,11 @@ const fs = require('./lib/filesystem');
 function createMigration (name) {
     return create(name)
         .then(() => {
-            console.log(`Created configuration ${name} successfully;`)
+            console.log(`Created configuration ${name} successfully`)
             process.exit(0);
         })
         .catch(function(err) {
-            console.error(`Could not create configuration ${name}`);
+            console.error(`Could not create migration configuration ${name}`);
             console.error(err);
             process.exit(-1);
         });
@@ -21,7 +21,7 @@ function runMigration (name) {
 }
 
 function listMigrations () {
-    return fs.getConfigs()
+    return fs.getConfigFiles()
         .then(function (files) {
             console.log('Available migrations:')
             files.forEach(function (file) {
@@ -38,8 +38,17 @@ function listMigrations () {
         });
 }
 
-function removeMigration () {
-
+function removeMigration (name) {
+    return fs.removeConfigFile(name)
+        .then(function () {
+            console.log(`Successfully removed migration configuration ${name}`);
+            process.exit(0);
+        })
+        .catch(function (err) {
+            console.error(`Could not remove migration configuration ${name}`);
+            console.error(err);
+            process.exit(-1);
+        })
 }
 
 function showMigration () {
