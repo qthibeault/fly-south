@@ -1,6 +1,7 @@
 'use strict';
 
 const create = require('./lib/create');
+const fs = require('./lib/filesystem');
 
 function createMigration (name) {
     return create(name)
@@ -20,7 +21,13 @@ function runMigration (name) {
 }
 
 function listMigrations () {
-
+    return fs.getConfigs()
+        .then(function (files) {
+            console.log('Available migrations:')
+            files.forEach(function (file) {
+                console.log(file.slice(0, file.length - 5));
+            });
+        });
 }
 
 function removeMigration () {
