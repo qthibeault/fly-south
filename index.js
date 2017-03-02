@@ -1,16 +1,40 @@
 'use strict';
 
-const program = require('commander');
-const services = require('./lib');
+const create = require('./lib/create');
 
-const app = program
-    .version('0.0.1')
-    .command('create <name>', { default: true })
-        .action(services.createMigration)
-    .command('migrate <name>')
-        .action(function (name) {
-            console.log(`Running migration [${name}]`);
-            // TODO
+function createMigration (name) {
+    return create(name)
+        .then(() => {
+            console.log(`Created configuration ${name} successfully;`)
+            process.exit(0);
+        })
+        .catch(function(err) {
+            console.error(`Could not create configuration ${name}`);
+            console.error(err);
+            process.exit(-1);
         });
+}
 
-module.exports = app;
+function runMigration (name) {
+
+}
+
+function listMigrations () {
+
+}
+
+function removeMigration () {
+
+}
+
+function showMigration () {
+
+}
+
+module.exports = {
+    createMigration,
+    runMigration,
+    listMigrations,
+    removeMigration,
+    showMigration
+};
