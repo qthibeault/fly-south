@@ -13,6 +13,7 @@
     "application-data-path": "0.0.1",
     "commander": "^2.9.0",
     "figlet": "^1.2.0",
+    "mongodb": "^2.2.24",
     "prompt": "^1.0.0"
   }
 }
