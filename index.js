@@ -27,6 +27,14 @@ function listMigrations () {
             files.forEach(function (file) {
                 console.log(file.slice(0, file.length - 5));
             });
+        })
+        .then(function () {
+            process.exit(0);
+        })
+        .catch(function (err) {
+            console.error(`Could not list migration configurations`);
+            console.error(err);
+            process.exit(-1);
         });
 }
 
