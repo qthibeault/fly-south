@@ -1,5 +1,6 @@
 'use strict';
 
+const util = require('util');
 const create = require('./lib/create');
 const fs = require('./lib/filesystem');
 
@@ -51,8 +52,23 @@ function removeMigration (name) {
         })
 }
 
-function showMigration () {
-
+function showMigration (name) {
+    return fs.getConfigFile(name)
+        .then(function (config) {
+            const output = util.inspect(config, {
+                colors: true,
+                depth: null
+            });
+            console.log(output);
+        })
+        .then(function () {
+            process.exit(0);
+        })
+        .catch(function (err) {
+            console.error(`Could not retrieve migration configuration ${name}`);
+            console.error(err);
+            process.exit(-1);
+        });
 }
 
 module.exports = {
