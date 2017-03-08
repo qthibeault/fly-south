@@ -17,15 +17,7 @@ const schema = {
         },
         "rename": {
             "description": "Name of copy target",
-            "type": "string",
-            "conform": function (rename) {
-                const source = prompt.history("source");
-                const target = prompt.history("target");
-                if(source === target && rename.length < 1)
-                    return false;
-
-                return true;
-            }
+            "type": "string"
         },
         "username": {
             "description": "Username to authenticate with",
