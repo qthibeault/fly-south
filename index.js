@@ -2,7 +2,7 @@
 
 const create = require('./lib/create');
 const migrate = require('./lib/migrate');
-const remove = require('./lib/delete');
+const remove = require('./lib/remove');
 const show = require('./lib/show');
 const list = require('./lib/list');
 
@@ -26,7 +26,7 @@ function runMigration (name) {
             process.exit(0);
         })
         .catch(function(err) {
-            console.error(`Could not create migration configuration ${name}`);
+            console.error(`Could not start migration ${name}`);
             console.error(err);
             process.exit(-1);
         });
