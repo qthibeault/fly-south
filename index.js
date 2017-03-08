@@ -1,8 +1,10 @@
 'use strict';
 
-const util = require('util');
 const create = require('./lib/create');
-const fs = require('./lib/filesystem');
+const migrate = require('./lib/migrate');
+const remove = require('./lib/delete');
+const show = require('./lib/show');
+const list = require('./lib/list');
 
 function createMigration (name) {
     return create(name)
@@ -22,13 +24,7 @@ function runMigration (name) {
 }
 
 function listMigrations () {
-    return fs.getConfigFiles()
-        .then(function (files) {
-            console.log('Available migrations:')
-            files.forEach(function (file) {
-                console.log(file.slice(0, file.length - 5));
-            });
-        })
+    return list()
         .then(function () {
             process.exit(0);
         })
@@ -40,7 +36,7 @@ function listMigrations () {
 }
 
 function removeMigration (name) {
-    return fs.removeConfigFile(name)
+    return remove(name)
         .then(function () {
             console.log(`Successfully removed migration configuration ${name}`);
             process.exit(0);
@@ -53,14 +49,7 @@ function removeMigration (name) {
 }
 
 function showMigration (name) {
-    return fs.getConfigFile(name)
-        .then(function (config) {
-            const output = util.inspect(config, {
-                colors: true,
-                depth: null
-            });
-            console.log(output);
-        })
+    return show(name)
         .then(function () {
             process.exit(0);
         })
