@@ -9,7 +9,7 @@ const list = require('./lib/list');
 function createMigration (name) {
     return create(name)
         .then(() => {
-            console.log(`Created configuration ${name} successfully`)
+            console.log(`Created migration configuration ${name} successfully`);
             process.exit(0);
         })
         .catch(function(err) {
@@ -20,7 +20,16 @@ function createMigration (name) {
 }
 
 function runMigration (name) {
-
+    return migrate(name)
+        .then(() => {
+            console.log(`Migration ${name} successfully started`);
+            process.exit(0);
+        })
+        .catch(function(err) {
+            console.error(`Could not create migration configuration ${name}`);
+            console.error(err);
+            process.exit(-1);
+        });
 }
 
 function listMigrations () {
