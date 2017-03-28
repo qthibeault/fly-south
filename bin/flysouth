@@ -10,12 +10,12 @@ const figlet = require('figlet');
 
     program
         .version('0.0.1');
-    
+
     program
-        .command('create <name>', { isDefault: true })
+        .command('create <name>')
         .description('Create a named migration configuration')
         .action(app.createMigration);
-    
+
     program
         .command('run <name>')
         .description('Run a named migration')
@@ -25,12 +25,12 @@ const figlet = require('figlet');
         .command('list')
         .description('List all migrations')
         .action(app.listMigrations)
-    
+
     program
         .command('rm <name>')
         .description('Remove named migration')
         .action(app.removeMigration);
-    
+
     program
         .command('show <name>')
         .description('Show named migration')
