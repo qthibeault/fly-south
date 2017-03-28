@@ -13,6 +13,7 @@
     "application-data-path": "0.0.1",
     "commander": "^2.9.0",
     "figlet": "^1.2.0",
+    "md5": "^2.2.1",
     "mongodb": "^2.2.24",
     "prompt": "^1.0.0",
     "revalidator": "^0.3.1"
